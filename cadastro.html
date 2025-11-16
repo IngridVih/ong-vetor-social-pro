@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Voluntário - Vetor Social</title>
+
+    <link rel="stylesheet" href="css/cadastro.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-light-page">
+    <header class="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <picture>
+                    <source srcset="img/logo.webp" type="image/webp">
+                    <img src="img/logo.jpg" alt="Logo Vetor Social" class="logo">
+                </picture>
+                <div>
+                    <strong>Vetor Social</strong>
+                    <span>Impacto Social</span>
+                </div>
+            </a>
+
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li class="dropdown">
+                    <a href="projetos.html">
+                        Projetos <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="projetos.html?categoria=Educação">
+                                <i class="fa-solid fa-graduation-cap"></i> Educação
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Saúde">
+                                <i class="fa-solid fa-heart-pulse"></i> Saúde
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Meio%20Ambiente">
+                                <i class="fa-solid fa-seedling"></i> Meio Ambiente
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Assistência%20Social">
+                                <i class="fa-solid fa-hands-helping"></i> Assistência Social
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="cadastro.html" class="btn-primary-nav active">Seja Voluntário</a></li>
+                <li><a href="doar.html" class="btn-primary-nav">Doação</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+    <div class="cadastro-container">
+
+        <div class="cadastro-header">
+            <h2>Cadastro de Voluntário</h2>
+            <p>Faça parte da nossa comunidade e ajude a transformar vidas através do voluntariado</p>
+        </div>
+
+        <div class="stepper">
+            <div class="step active" data-step="1">
+                <span>1</span>
+                <div class="step-line"></div>
+            </div>
+            <div class="step" data-step="2">
+                <span>2</span>
+                <div class="step-line"></div>
+            </div>
+            <div class="step" data-step="3">
+                <span>3</span>
+                <div class="step-line"></div>
+            </div>
+            <div class="step" data-step="4">
+                <span>4</span>
+            </div>
+        </div>
+
+        <form id="volunteerForm" class="form-container" action="cadastro-sucesso.html" method="GET">
+            
+            <div class="form-step active" id="step-1">
+                <h3 class="form-step-title"><i class="fa-solid fa-user"></i> Dados Pessoais</h3>
+                <p class="form-step-subtitle">Etapa 1 de 4</p>
+                <div class="form-grid-2col">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" placeholder="Seu nome completo" required maxlength="200"
+                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="Use apenas letras e espaços." autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required maxlength="200" autocomplete="email">
+                    </div>
+                </div>
+                <div class="form-grid-2col">
+                    <div class="form-group">
+                        <label for="cpf">CPF *</label>
+                        <input type="text" id="cpf" placeholder="000.000.000-00" required maxlength="14"
+                            pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
+                            title="Digite um CPF válido (ex: 123.456.789-00)" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone *</label>
+                        <input type="tel" id="telefone" placeholder="(11) 99999-9999" required maxlength="15"
+                            pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
+                            title="Digite um telefone válido (ex: (11) 99999-9999)" autocomplete="tel">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nascimento">Data de Nascimento *</label>
+                    <input type="date" id="nascimento" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-primary btn-next">Próximo <i
+                            class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step-2">
+                <h3 class="form-step-title"><i class="fa-solid fa-map-location-dot"></i> Endereço</h3>
+                <p class="form-step-subtitle">Etapa 2 de 4</p>
+                <div class="form-grid-2col">
+                    <div class="form-group">
+                        <label for="cep">CEP *</label>
+                        <input type="text" id="cep" placeholder="00000-000" required maxlength="9"
+                            pattern="\d{5}-?\d{3}" title="Digite um CEP válido (ex: 12345-678)" autocomplete="postal-code">
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado *</label>
+                        <select id="estado" name="estado" required autocomplete="address-level1">
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grid-2col">
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input type="text" id="cidade" placeholder="Nome da cidade" required maxlength="100"
+                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="Use apenas letras e espaços." autocomplete="address-level2">
+                    </div>
+                    <div class="form-group">
+                        <label for="rua">Rua *</label>
+                        <input type="text" id="rua" placeholder="Nome da rua" required maxlength="100"
+                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" title="Use apenas letras, números e espaços." autocomplete="address-line1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número</label>
+                    <input type="text" id="numero" placeholder="Número da residência" maxlength="20"
+                        pattern="[0-9A-Za-z\s\/\-]*" title="Pode conter números e letras (ex: 123 ou 45A)." required autocomplete="address-line2">
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary-outline btn-prev"><i
+                            class="fa-solid fa-arrow-left"></i> Anterior</button>
+                    <button type="button" class="btn btn-primary btn-next">Próximo <i
+                            class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step-3">
+                <h3 class="form-step-title"><i class="fa-solid fa-heart"></i> Habilidades e Disponibilidade</h3>
+                <p class="form-step-subtitle">Etapa 3 de 4</p>
+
+                <fieldset class="form-group">
+                    <legend class="form-label-group">Suas Habilidades * <small>(selecione pelo menos uma)</small></legend>
+                    <div class="checkbox-grid" id="habilidades-grid">
+                        <div class="checkbox-group"><input type="checkbox" id="cb-edu" name="habilidade"> <label for="cb-edu">Educação</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-saude" name="habilidade"> <label for="cb-saude">Saúde</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-tec" name="habilidade"> <label for="cb-tec">Tecnologia</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-com" name="habilidade"> <label for="cb-com">Comunicação</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-org" name="habilidade"> <label for="cb-org">Organização</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-lid" name="habilidade"> <label for="cb-lid">Liderança</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-arte" name="habilidade"> <label for="cb-arte">Arte</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-mus" name="habilidade"> <label for="cb-mus">Música</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-esp" name="habilidade"> <label for="cb-esp">Esporte</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-cul" name="habilidade"> <label for="cb-cul">Culinária</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-jar" name="habilidade"> <label for="cb-jar">Jardinagem</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-const" name="habilidade"> <label for="cb-const">Construção</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-adm" name="habilidade"> <label for="cb-adm">Administração</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-cont" name="habilidade"> <label for="cb-cont">Contabilidade</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-mkt" name="habilidade"> <label for="cb-mkt">Marketing</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-design" name="habilidade"> <label for="cb-design">Design</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-foto" name="habilidade"> <label for="cb-foto">Fotografia</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-trad" name="habilidade"> <label for="cb-trad">Tradução</label></div>
+                    </div>
+                    <span class="validation-message error" id="habilidadeError" style="display: none;">Selecione pelo menos uma habilidade</span>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <legend class="form-label-group">Dias Disponíveis * <small>(selecione pelo menos um)</small></legend>
+                    <div class="checkbox-grid" id="dias-grid">
+                        <div class="checkbox-group"><input type="checkbox" id="cb-seg" name="dias"> <label for="cb-seg">Segunda-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-ter" name="dias"> <label for="cb-ter">Terça-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-qua" name="dias"> <label for="cb-qua">Quarta-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-qui" name="dias"> <label for="cb-qui">Quinta-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-sex" name="dias"> <label for="cb-sex">Sexta-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-sab" name="dias"> <label for="cb-sab">Sábado</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-dom" name="dias"> <label for="cb-dom">Domingo</label></div>
+                    </div>
+                    <span class="validation-message error" id="diasError" style="display: none;">Selecione pelo menos um dia</span>
+                </fieldset>
+
+                <div class="form-grid-2col">
+                    <div class="form-group">
+                        <label for="periodo">Período Preferido *</label>
+                        <select id="periodo" required autocomplete="off">
+                            <option value="">Selecione um período</option>
+                            <option>Manhã</option>
+                            <option>Tarde</option>
+                            <option>Noite</option>
+                            <option>Indiferente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="horas">Horas Semanais Disponíveis *</label>
+                        <input type="number" id="horas" placeholder="Ex: 8" required min="1" max="168"
+                            title="Informe o número de horas semanais disponíveis." autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="experiencia">Experiência Anterior em Voluntariado</label>
+                    <textarea id="experiencia" rows="4"
+                        placeholder="Conte-nos sobre sua experiência anterior em trabalhos voluntários (opcional)"
+                        maxlength="1500"></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary-outline btn-prev"><i
+                            class="fa-solid fa-arrow-left"></i> Anterior</button>
+                    <button type="button" class="btn btn-primary btn-next">Próximo <i
+                            class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step-4">
+                <h3 class="form-step-title"><i class="fa-solid fa-seedling"></i> Motivação e Áreas de Interesse</h3>
+                <p class="form-step-subtitle">Etapa 4 de 4</p>
+
+                <div class="form-group">
+                    <label for="motivacao">Por que você quer ser voluntário? *</label>
+                    <textarea id="motivacao" rows="5" placeholder="Compartilhe sua motivação para ser voluntário..."
+                        required maxlength="300"></textarea>
+                    <div class="validation-message-container">
+                        <span class="validation-message error" id="motivacaoError" style="display: none;">Motivação
+                            é obrigatória</span>
+                        <span class="char-counter" id="motivacaoCounter">0/300 caracteres</span>
+                    </div>
+                </div>
+
+                <fieldset class="form-group">
+                    <legend class="form-label-group">Áreas de Interesse * <small>(Selecione pelo menos
+                            uma)</small></legend>
+                    <div class="card-checkbox-grid">
+                        <div class="card-checkbox-group">
+                            <input type="checkbox" id="area-edu" name="areaInteresse">
+                            <label for="area-edu"><i class="fa-solid fa-book"></i> Educação</label>
+                        </div>
+                        <div class="card-checkbox-group">
+                            <input type="checkbox" id="area-saude" name="areaInteresse">
+                            <label for="area-saude"><i class="fa-solid fa-briefcase-medical"></i> Saúde</label>
+                        </div>
+                        <div class="card-checkbox-group">
+                            <input type="checkbox" id="area-amb" name="areaInteresse">
+                            <label for="area-amb"><i class="fa-solid fa-tree"></i> Meio Ambiente</label>
+                        </div>
+                        <div class="card-checkbox-group">
+                            <input type="checkbox" id="area-ass" name="areaInteresse">
+                            <label for="area-ass"><i class="fa-solid fa-hand-holding-heart"></i> Assistência
+                                Social</label>
+                        </div>
+                        <div class="card-checkbox-group">
+                            <input type="checkbox" id="area-cult" name="areaInteresse">
+                            <label for="area-cult"><i class="fa-solid fa-palette"></i> Cultura</label>
+                        </div>
+                        <div class="card-checkbox-group">
+                            <input type="checkbox" id="area-esp" name="areaInteresse">
+                            <label for="area-esp"><i class="fa-solid fa-person-running"></i> Esporte</label>
+                        </div>
+                    </div>
+                    <span class="validation-message error" id="areaError" style="display: none;">Selecione pelo menos
+                        uma área de interesse</span>
+                </fieldset>
+
+
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary-outline btn-prev"><i
+                            class="fa-solid fa-arrow-left"></i> Anterior</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Finalizar
+                        Cadastro</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-col">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="Logo Vetor Social">
+                    <div>
+                        <strong>Vetor Social</strong>
+                        <span>Impacto Social</span>
+                    </div>
+                </a>
+                <p>Conectamos pessoas para transformar comunidades através de projetos sociais focados em educação,
+                    saúde, meio ambiente e assistência social.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="projetos.html">Projetos</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="cadastro.html">Seja Voluntário</a></li>
+                    <li><a href="doar.html">Faça uma Doação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Nossos Projetos</h4>
+                <ul>
+                    <li><a href="#">Educação</a></li>
+                    <li><a href="#">Saúde</a></li>
+                    <li><a href="#">Meio Ambiente</a></li>
+                    <li><a href="#">Assistência Social</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Rua da Solidariedade, 123<br>Centro, São Paulo - SP
+                    </li>
+                    <li><i class="fa-solid fa-phone"></i> (11) 99999-9999</li>
+                    <li><i class="fa-solid fa-envelope"></i> contato@vetorsocial.org</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-stats">
+            <div>
+                <strong>500+</strong>
+                <span>Voluntários Ativos</span>
+            </div>
+            <div>
+                <strong>50+</strong>
+                <span>Projetos Realizados</span>
+            </div>
+            <div>
+                <strong>10k+</strong>
+                <span>Pessoas Impactadas</span>
+            </div>
+            <div>
+                <strong>8</strong>
+                <span>Anos de História</span>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Vetor Social. Todos os direitos reservados.</p>
+                <p>Desenvolvido por: <strong>Ingrid Vitória Guimarães Rodrigues</strong></p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/menu.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/cadastro.js"></script>
+</body>
+</html>
