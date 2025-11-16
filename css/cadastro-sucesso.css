@@ -1,0 +1,131 @@
+/* =======================
+   GOOGLE FONTS
+======================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* =======================
+   VARIÁVEIS CSS (ROOT)
+======================= */
+:root {
+    /* CORES */
+    --color-primary: #00A98E;
+    --color-primary-dark: #008771;
+    --color-secondary: #FF6B6B;
+    --color-secondary-dark: #E74C3C;
+    --color-text-dark: #212529;
+    --color-text-medium: #555;
+    --color-text-light: #777;
+    --color-white: #FFFFFF;
+    --color-bg-light: #F8F9FA;
+    --color-bg-dark: #20252a;
+    --color-bg-cta: #16A085;
+    --color-border: #E0E0E0;
+    --color-green-light: #E6F7F3;
+    --color-blue-light: #EBF5FB;
+    --color-orange-light: #FFE6D4;
+    --color-purple-light: #F3E6FB;
+
+    /* TIPOGRAFIA */
+    --font-family: 'Poppins', sans-serif;
+    --font-size-h1: 3.5rem;
+    --font-size-h2: 2.5rem;
+    --font-size-h3: 1.5rem;
+    --font-size-h4: 1.25rem;
+    --font-size-h5: 1rem;
+    --font-size-base: 1rem;
+
+    /* ESPAÇAMENTO MODULAR */
+    --space-8: 8px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-48: 48px;
+    --space-64: 64px;
+
+    --transition: all 0.3s ease;
+}
+
+/* =======================
+   RESET E ESTILOS GLOBAIS
+======================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--color-text-medium);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-text-dark);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--space-16);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--space-8);
+}
+
+h4 {
+    font-size: var(--font-size-h4);
+}
+
+h5 {
+    font-size: var(--font-size-h5);
+}
+
+p {
+    margin-bottom: var(--space-16);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+section {
+    padding: var(--space-64) 0;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-24) 0;
+}
