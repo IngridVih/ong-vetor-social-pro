@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor Social - Impacto Social</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/doar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <picture>
+                    <source srcset="img/logo.webp" type="image/webp">
+                    <img src="img/logo.jpg" alt="Logo Vetor Social" class="logo">
+                </picture>
+                <div>
+                    <strong>Vetor Social</strong>
+                    <span>Impacto Social</span>
+                </div>
+            </a>
+
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li class="dropdown">
+                    <a href="projetos.html">
+                        Projetos <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="projetos.html?categoria=Educação">
+                                <i class="fa-solid fa-graduation-cap"></i> Educação
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Saúde">
+                                <i class="fa-solid fa-heart-pulse"></i> Saúde
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Meio%20Ambiente">
+                                <i class="fa-solid fa-seedling"></i> Meio Ambiente
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Assistência%20Social">
+                                <i class="fa-solid fa-hands-helping"></i> Assistência Social
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="cadastro.html">Seja Voluntário</a></li>
+                <li><a href="doar.html">Doação</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+  <section class="section section--light doacao-section">
+    <div class="container">
+      <h2 class="section_title">Faça sua Doação</h2>
+      <p class="section_subtitle">
+        Sua contribuição transforma vidas. Escolha um projeto e faça parte dessa mudança.
+      </p>
+
+      <div class="grid-12 doacao-grid">
+        <!-- Coluna 1: Formulário -->
+        <section class="col-7 donation-form-wrapper">
+          <h3>Formulário de Doação</h3>
+
+          <form id="donation-form">
+            <!-- Valor da doação -->
+            <div class="form-group">
+              <label for="valor">Valor da doação (R$):</label>
+              <input type="number" id="valor" name="valor" placeholder="Ex: 50" min="1" required>
+            </div>
+
+            <!-- Projeto -->
+            <div class="form-group">
+              <label for="projeto">Escolha o projeto:</label>
+              <select id="projeto" name="projeto" required>
+                <option value="" disabled selected>Selecione um projeto...</option>
+                <option value="cultura">Arte e Cultura nas Escolas</option>
+                <option value="saúde">Saúde Mental na Comunidade</option>
+                <option value="educacao_digital">Educação Digital para Todos</option>
+                <option value="meio_ambiente">Horta Comunitária</option>
+                <option value="assistência_social">Alimentação Solidária</option>
+                <option value="meio_ambiente">Reflorestamento Urbano</option>
+              </select>
+            </div>
+
+            <!-- Forma de pagamento -->
+            <div class="form-group">
+              <label>Forma de pagamento:</label>
+              <div class="payment-options">
+                <label>
+                  <input type="radio" name="pagamento" value="pix" required> PIX
+                </label>
+                <label>
+                  <input type="radio" name="pagamento" value="transferencia"> Transferência Bancária
+                </label>
+              </div>
+            </div>
+
+            <!-- PIX Info -->
+            <div id="pix-info" class="payment-info hidden">
+              <h4>Pagamento via PIX</h4>
+              <img src="img/pix-qr-code.jpg" alt="QR Code PIX" class="qr-code">
+              <p><strong>Chave PIX:</strong> contato@vetorsocial.org</p>
+              <p><strong>Nome:</strong> Vetor Social ONG</p>
+              <p>Escaneie o QR Code ou use a chave acima para concluir sua doação.</p>
+            </div>
+
+            <!-- Transferência Info -->
+            <div id="transferencia-info" class="payment-info hidden">
+              <h4>Transferência Bancária</h4>
+              <p><strong>Banco:</strong> Banco do Brasil (001)</p>
+              <p><strong>Agência:</strong> 1234-5</p>
+              <p><strong>Conta Corrente:</strong> 98765-4</p>
+              <p><strong>Titular:</strong> Vetor Social ONG</p>
+              <p><strong>CNPJ:</strong> 12.345.678/0001-90</p>
+              <p>Após a transferência, envie o comprovante para <strong>contato@vetorsocial.org</strong>.</p>
+            </div>
+
+            <!-- Botão -->
+            <button type="submit" class="btn">Doar Agora</button>
+
+            <!-- Mensagem de sucesso -->
+            <p id="mensagem-doacao" class="mensagem-doacao"></p>
+          </form>
+        </section>
+
+        <!-- Coluna 2: Informações -->
+        <section class="col-5">
+          <h3 class="why-donation">Como sua doação ajuda?</h3>
+          <p class="because-donation">
+            Cada contribuição financia ações reais em comunidades, escolas e projetos sociais.
+            Você escolhe onde seu impacto será sentido.
+          </p>
+
+          <div class="info-box">
+            <h4><i class="fa-solid fa-seedling"></i> Transparência</h4>
+            <p>Relatórios de impacto e resultados são publicados regularmente.</p>
+          </div>
+
+          <div class="info-box">
+            <h4><i class="fa-solid fa-heart"></i> Comprometimento</h4>
+            <p>Nosso time garante que cada real seja investido em causas verdadeiras.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-col">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="Logo Vetor Social">
+                    <div>
+                        <strong>Vetor Social</strong>
+                        <span>Impacto Social</span>
+                    </div>
+                </a>
+                <p>Conectamos pessoas para transformar comunidades através de projetos sociais focados em educação,
+                    saúde, meio ambiente e assistência social.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="projetos.html">Projetos</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="cadastro.html" class="text-primary">Seja Voluntário</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Nossos Projetos</h4>
+                <ul>
+                    <li><a href="#">Educação</a></li>
+                    <li><a href="#">Saúde</a></li>
+                    <li><a href="#">Meio Ambiente</a></li>
+                    <li><a href="#">Assistência Social</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Rua da Solidariedade, 123<br>Centro, São Paulo - SP
+                    </li>
+                    <li><i class="fa-solid fa-phone"></i> (11) 99999-9999</li>
+                    <li><i class="fa-solid fa-envelope"></i> contato@vetorsocial.org</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-stats">
+            <div>
+                <strong>500+</strong>
+                <span>Voluntários Ativos</span>
+            </div>
+            <div>
+                <strong>50+</strong>
+                <span>Projetos Realizados</span>
+            </div>
+            <div>
+                <strong>10k+</strong>
+                <span>Pessoas Impactadas</span>
+            </div>
+            <div>
+                <strong>8</strong>
+                <span>Anos de História</span>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Vetor Social. Todos os direitos reservados.</p>
+                <p>Desenvolvido por: <strong>Ingrid Vitória Guimarães Rodrigues</strong></p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/menu.js"></script>
+    <script src="js/doacao.js"></script>
+    <script src="js/filter.js"></script>
+</body>
+</html>

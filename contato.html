@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Vetor Social</title>
+
+    <link rel="stylesheet" href="css/contato.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <picture>
+                    <source srcset="img/logo.webp" type="image/webp">
+                    <img src="img/logo.jpg" alt="Logo Vetor Social" class="logo">
+                </picture>
+                <div>
+                    <strong class="mobile-nome-ong">Vetor Social</strong>
+                    <span>Impacto Social</span>
+                </div>
+            </a>
+
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li class="dropdown">
+                    <a href="projetos.html">
+                        Projetos <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="projetos.html?categoria=Educação">
+                                <i class="fa-solid fa-graduation-cap"></i> Educação
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Saúde">
+                                <i class="fa-solid fa-heart-pulse"></i> Saúde
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Meio%20Ambiente">
+                                <i class="fa-solid fa-seedling"></i> Meio Ambiente
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projetos.html?categoria=Assistência%20Social">
+                                <i class="fa-solid fa-hands-helping"></i> Assistência Social
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+                <li><a href="cadastro.html">Seja Voluntário</a></li>
+                <li><a href="doar.html">Doação</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Entre em Contato</h1>
+                <p>Estamos aqui para ouvir você. Entre em contato conosco para tirar dúvidas, fazer sugestões ou
+                    descobrir como pode fazer parte da nossa missão.</p>
+            </div>
+        </section>
+
+        <section class="contact-info-cards container">
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <h3>Telefone</h3>
+                    <p>(11) 99999-9999</p>
+                    <span>Segunda a Sexta, 8h às 18h</span>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>contato@vetorsocial.org</p>
+                    <span>Respondemos em até 24h</span>
+                </div>
+                <div class="info-card">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>(11) 99999-9999</p>
+                    <span>Atendimento rápido</span>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Endereço</h3>
+                    <p>Rua da Solidariedade, 123</p>
+                    <span>Centro, São Paulo - SP</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-main container">
+            <div class="contact-layout-grid">
+
+                <div class="contact-form-wrapper">
+                    <h2>Envie sua Mensagem</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="tipoContato">Tipo de Contato</label>
+                            <select id="tipoContato">
+                                <option>Informações Gerais</option>
+                                <option>Quero ser Voluntário</option>
+                                <option>Parcerias</option>
+                                <option>Doações</option>
+                            </select>
+                        </div>
+
+                        <div class="form-grid-2col">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" id="nome" placeholder="Seu nome completo" required maxlength="200"
+                                    pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="Use apenas letras e espaços.">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" placeholder="seu@email.com" required maxlength="200">
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col">
+                            <div class="form-group">
+                                <label for="telefone">Telefone</label>
+                                <input type="tel" id="telefone" placeholder="(11) 99999-9999" required maxlength="15"
+                                    pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
+                                    title="Digite um telefone válido (ex: (11) 99999-9999)">
+                            </div>
+                            <div class="form-group">
+                                <label for="assunto">Assunto *</label>
+                                <input type="text" id="assunto" placeholder="Assunto da mensagem" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem *</label>
+                            <textarea id="mensagem" rows="7" placeholder="Conte-nos como podemos ajudar você..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Enviar
+                            Mensagem</button>
+                    </form>
+                </div>
+
+                <aside class="contact-sidebar">
+
+                    <div class="sidebar-card">
+                        <h3><i class="fa-solid fa-clock"></i> Horário de Funcionamento</h3>
+                        <ul class="schedule-list">
+                            <li><span>Segunda a Sexta:</span> <strong>8h às 18h</strong></li>
+                            <li><span>Sábados:</span> <strong>9h às 14h</strong></li>
+                            <li><span>Domingos:</span> <strong class="fechado">Fechado</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card location-card">
+                        <h3><i class="fa-solid fa-map-location-dot"></i> Nossa Localização</h3>
+                        <p>
+                            Rua da Solidariedade, 123<br>
+                            Centro, São Paulo - SP<br>
+                            CEP: 01234-567
+                        </p>
+                        <a href="#">Ver no Google Maps <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fa-solid fa-share-nodes"></i> Siga-nos</h3>
+                        <p>Acompanhe nosso trabalho e novidades nas redes sociais:</p>
+                        <div class="sidebar-social-links">
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card faq-card">
+                        <h3><i class="fa-solid fa-circle-question"></i> Perguntas Frequentes</h3>
+                        <div class="faq-item">
+                            <strong>Como posso me tornar voluntário?</strong>
+                            <p>Faça seu cadastro em nossa página de voluntários e aguarde nosso contato.</p>
+                        </div>
+                        <div class="faq-item">
+                            <strong>Vocês aceitam doações?</strong>
+                            <p>Sim! Entre em contato para saber como contribuir financeiramente.</p>
+                        </div>
+                        <div class="faq-item">
+                            <strong>Posso visitar a sede?</strong>
+                            <p>Claro! Agende uma visita através dos nossos canais de contato.</p>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-col">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="Logo Vetor Social">
+                    <div>
+                        <strong>Vetor Social</strong>
+                        <span>Impacto Social</span>
+                    </div>
+                </a>
+                <p>Conectamos pessoas para transformar comunidades através de projetos sociais focados em educação,
+                    saúde, meio ambiente e assistência social.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="projetos.html">Projetos</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="cadastro.html">Seja Voluntário</a></li>
+                    <li><a href="doar.html">Faça uma Doação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Nossos Projetos</h4>
+                <ul>
+                    <li><a href="#">Educação</a></li>
+                    <li><a href="#">Saúde</a></li>
+                    <li><a href="#">Meio Ambiente</a></li>
+                    <li><a href="#">Assistência Social</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Rua da Solidariedade, 123<br>Centro, São Paulo - SP
+                    </li>
+                    <li><i class="fa-solid fa-phone"></i> (11) 99999-9999</li>
+                    <li><i class="fa-solid fa-envelope"></i> contato@vetorsocial.org</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-stats">
+            <div>
+                <strong>500+</strong>
+                <span>Voluntários Ativos</span>
+            </div>
+            <div>
+                <strong>50+</strong>
+                <span>Projetos Realizados</span>
+            </div>
+            <div>
+                <strong>10k+</strong>
+                <span>Pessoas Impactadas</span>
+            </div>
+            <div>
+                <strong>8</strong>
+                <span>Anos de História</span>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Vetor Social. Todos os direitos reservados.</p>
+                <p>Desenvolvido por: <strong>Ingrid Vitória Guimarães Rodrigues</strong></p>
+            </div>
+        </div>
+    </footer>
+    <!-- MODAL -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>Mensagem Enviada!</h3>
+            <p>Obrigado por entrar em contato. Em breve responderemos :)</p>
+            <button id="closeModal" class="btn btn-primary">Fechar</button>
+        </div>
+    </div>
+    <script src="js/menu.js"></script>
+    <script src="js/filter.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('contactForm');
+        const modal = document.getElementById('feedbackModal');
+        const closeModal = document.getElementById('closeModal');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+
+        closeModal.addEventListener('click', () => modal.classList.remove('show'));
+    });
+
+</script>
+</body>
+
+</html>
