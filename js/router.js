@@ -65,8 +65,11 @@ const routes = {
 
 // 2. Função para carregar o conteúdo da página
 const loadPage = async (path) => {
-    const cleanPath = path.split('?')[0] || '/';
-    const route = routes[cleanPath] || routes['/404'];
+    let cleanPath = path.split('?')[0] || '/';
+
+    if (cleanPath === '/index.min.html') cleanPath = '/'; 
+
+    const route = routes[cleanPath] || routes['/404'];
 
     const response = await fetch(route.path);
     const html = await response.text();
@@ -121,6 +124,13 @@ window.addEventListener('popstate', () => {
 
 // 5. Carrega a página inicial
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // ==== CÓDIGO DO TEMA ADICIONADO AQUI ====
+    // 1. Aplica o tema salvo (lê o localStorage)
+    App.applySavedTheme(); 
+    // 2. Adiciona os cliques nos botões de tema
+    App.initThemeSwitcher(); 
+    // ===================================
 
     // O Menu é estático, então só inicializamos UMA VEZ.
     App.initMenu(); 

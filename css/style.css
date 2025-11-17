@@ -66,6 +66,14 @@
     --color-btn-primary: #04715f;
     --color-primary-high-footer: #56ccb5;
     --color-icon-projects: #ffffff;
+    --color-icons-themes: #fff;
+    --color-icons-themes-second: #fff;
+    --color-green-light-secondary: #e6fcf7;
+    --bg-sucess-container: #F0FAF8;
+    --bg-card-succes: #fff;
+    --color-bg-carousel: #fff;
+    --color-text-menu: #005042;
+    --color-bg-menu: #fff;
 
     /* TIPOGRAFIA */
     --font-family: 'Poppins', sans-serif;
@@ -287,7 +295,6 @@ hr {
 }
 
 .btn-secondary-outline {
-    background: transparent;
     border: 2px solid var(--color-primary);
 }
 
@@ -348,6 +355,7 @@ hr {
     justify-content: space-between;
     align-items: center;
     background: var(--color-bg);
+    padding-top: 0;
 }
 
 .logo {
@@ -414,7 +422,7 @@ hr {
     padding: 0.5rem 0;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown.show .dropdown-menu {
     display: block;
 }
 
@@ -428,14 +436,16 @@ hr {
 
 .dropdown-menu a:hover {
     background-color: var(--color-bg);
-    color: var(--color-primary);
+    color: var(--color-primary-high);
 }
 
 .menu-toggle {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--color-text-dark);
+    color: var(--color-text-menu);
+    background-color: var(--color-bg-menu);
+    border: none;
 }
 
 /* === ESTILIZAÇÃO DOS ÍCONES DO DROPDOWN === */
@@ -448,18 +458,22 @@ hr {
 
 /* Cores específicas por categoria */
 .dropdown-menu li:nth-child(1) i {
-    color: #2a7de1;
+    color: var(--color-primary-high);
 }
 
 .dropdown-menu li:nth-child(2) i {
-    color: #e12a5a;
+    color: #2a7de1;
 }
 
 .dropdown-menu li:nth-child(3) i {
-    color: #2ecc71;
+    color: #e12a5a;
 }
 
 .dropdown-menu li:nth-child(4) i {
+    color: #2ecc71;
+}
+
+.dropdown-menu li:nth-child(5) i {
     color: #f1c40f;
 }
 
@@ -612,6 +626,7 @@ hr {
     height: 40px;
     border-radius: 50%;
     font-size: 1.2rem;
+    background-color: var(--color-bg-carousel);
     color: var(--color-primary);
     cursor: pointer;
     display: flex;
@@ -1118,6 +1133,18 @@ p {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(0, 169, 142, 0.1);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .view-options {
@@ -1656,7 +1683,7 @@ p {
 
 .team-social a:hover {
     background-color: var(--color-primary);
-    color: var(--color-white);
+    color: var(--color-icons-themes-second);
 }
 
 /* ==============================
@@ -2123,10 +2150,22 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
     width: 100%;
     margin: 0 auto 2.5rem auto;
     position: relative;
+}
+
+.stepper ol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    /* <-- ELE VEIO PARA CÁ */
+
+    /* Reset para remover os números e o padding da lista */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .step {
@@ -2206,7 +2245,7 @@ p {
 }
 
 .form-step-title i {
-    color: var(--color-primary);
+    color: var(--color-primary-high);
 }
 
 .form-step-subtitle {
@@ -2357,7 +2396,7 @@ p {
     font-size: 1.25rem;
     width: 25px;
     text-align: center;
-    color: var(--color-primary);
+    color: var(--color-primary-high);
 }
 
 .card-checkbox-group label:hover {
@@ -2366,7 +2405,7 @@ p {
 
 /* Estilo do card selecionado */
 .card-checkbox-group input[type="checkbox"]:checked+label {
-    background-color: var(--color-green-light);
+    background-color: var(--color-green-light-secondary);
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(0, 169, 142, 0.1);
 }
@@ -2405,16 +2444,17 @@ p {
     justify-content: center;
     min-height: 70vh;
     padding: 4rem 1.5rem;
-    background-color: #F0FAF8;
+    background-color: var(--bg-sucess-container);
 }
 
 .success-card {
-    background-color: var(--color-white);
+    background-color: var(--bg-card-succes);
     border-radius: 16px;
     padding: 3rem;
     text-align: center;
     max-width: 600px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    border: 1px solid var(--color-border);
 }
 
 .success-icon {
@@ -3230,4 +3270,311 @@ p {
         height: 65px;
         border-radius: 50%;
     }
+}
+
+/* =======================
+   ESTILOS DO TEMA
+======================= */
+
+/* 1. Estilos para os botões NA NAVBAR */
+.theme-switcher-container {
+    /* Alinha o <li> com os outros links */
+    display: flex;
+    align-items: center;
+}
+
+.theme-switcher {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.theme-btn {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-light);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    background: var(--color-primary-high);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+/* Botão ativo (mostra o tema selecionado) */
+.theme-btn.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+/* 2. Definições dos Temas (Sobrescrevendo as :root) */
+
+/* --- TEMA ESCURO --- */
+body.theme-dark {
+
+    --color-bg: #0e0f0f;
+    --color-white: #fcfcfc;
+    --color-bg-dark: #20252a;
+    --color-bg-card: #20252a;
+    --color-border: #4E6A85;
+    --color-subtitle: #fcfcfc;
+    --bg-footer: #20252a;
+    --color-bg-impact: #374b5d;
+    --color-footer: #fcfcfc;
+    --lines-footer: #fcfcfc;
+
+    --color-text-dark: #F8F9FA;
+    --color-text-medium: #f8f8f8;
+    --color-text-light: #7F8C8D;
+    --color-text-cards: #fcfcfc;
+    --color-text-transform: #000000;
+
+    --color-primary: #277969;
+    --color-primary-dark: #1b7e6a;
+    --color-bg-cta: #374b5d;
+    --bg-about: #374b5d;
+    --color-green-light: #ffffff;
+    --color-green-light-transforme: #28a88f;
+    --color-title-page-header: #ffffff;
+    --essence-card-one: #2f7b6a;
+    --essence-card-two: #427b6e;
+    --essence-card-three: #7f6748;
+    --color-text-light: #ffffff;
+    --color-testimonial: #ffffff;
+    --bg-faq-card: #273440;
+    --color-text-forms: #ffffff;
+    --color-text-step: #000000;
+    --bg-container-forms: #000;
+    --bg-input-forms: #fefefe;
+    --bg-container-forms-donation: #31414f;
+    --bg-active-filter: #374b5d;
+    --color-education: #b0d6ff;
+    --color-tag-cards: #ffffff;
+    --color-btn-light: #0f806d;
+    --color-btn-light-text: #fff;
+    --color-secondary-dark: #e54736;
+    --color-primary-step: #28a88f;
+    --color-primary-high: #56ccb5;
+    --color-btn-color: #ffffff;
+    --color-btn-primary: #04715f;
+    --color-primary-high-footer: #56ccb5;
+    --color-icon-projects: #ffffff;
+    --color-icons-themes: #000;
+    --color-icons-themes-second: #fff;
+    --color-green-light-secondary: #2f404f;
+    --bg-sucess-container: #20252a;
+    --bg-card-succes: #23303c;
+    --color-bg-carousel: #fff;
+    --color-text-menu: #56ccb5;
+    --color-bg-menu: #0e0f0f;
+}
+
+/* --- TEMA ALTO CONTRASTE --- */
+body.theme-high-contrast {
+    --color-bg: #000;
+    --color-white: #ffffff;
+    --color-bg-dark: #000;
+    --color-bg-card: #000;
+    --color-bg-impact: #000000;
+    --color-border: #FFFF00;
+    --color-text-dark: #ffffff;
+
+    --color-text-contact: #FFFFFF;
+    --color-text-medium: #FFFFFF;
+    --color-text-light: #CCCCCC;
+    --color-subtitle: #FFFF00;
+    --color-text-cards: #FFFF00;
+    --bg-container-forms-donation: #000000;
+
+    --color-primary: #FFD700;
+    --color-primary-dark: #f3cf00;
+    --color-secondary: #ff00ff;
+    --color-green-light: #FFD700;
+    --color-text-transform: #FFD700;
+    --color-green-light-transform: #000;
+
+    --bg-footer: #000000;
+    --color-footer: #FFFFFF;
+    --lines-footer: #FFFFFF;
+    --color-bg-cta: #000000;
+    --bg-about: #000000;
+    --color-text-light: #ffffff;
+    --color-green-light: #000000;
+    --color-green-light-transforme: #1f1f1f;
+    --color-tag: #ffffff;
+    --color-title-page-header: #ffffff;
+    --essence-card-one: #000000;
+    --essence-card-two: #000000;
+    --essence-card-three: #000000;
+    --color-testimonial: #FFD700;
+    --bg-icon-wrapper: #111111;
+    --bg-icon-wrapper-third: #111111;
+    --color-icon-third: #FFD700;
+    --color-btn-color: #000000;
+    --bg-faq-card: #000000;
+    --color-text-forms: #ffffff;
+    --color-text-step: #000000;
+    --bg-container-forms: #000;
+    --bg-input-forms: #ffffff;
+    --bg-active-filter: #000;
+    --color-education: #ffffff;
+    --color-tag-cards: #000;
+    --color-btn-light: #FFD700;
+    --color-btn-light-text: #000000;
+    --color-secondary-dark: #ff00ff;
+    --color-primary-step: #FFD700;
+    --color-bg-transforme: #000000;
+    --color-primary-high: #FFD700;
+    --color-btn-primary: #FFD700;
+    --color-primary-high-footer: #FFD700;
+    --color-icon-projects: #000000;
+    --color-cta-p: #000;
+    --color-icons-themes: #000;
+    --color-icons-themes-second: #000;
+    --color-green-light-secondary: #2f2f2f;
+    --bg-sucess-container: #000000;
+    --bg-card-succes: #000000;
+    --color-bg-carousel: #000000;
+    --color-text-menu: #FFD700;
+    --color-bg-menu: #000000;
+}
+
+/* Ajustes para os temas */
+body.theme-dark .theme-btn.active {
+    background: var(--color-bg-impact);
+    color: var(--color-white);
+}
+
+/* Garante que o botão de tema no header mude com o tema */
+body.theme-dark .theme-btn {
+    border-color: var(--color-border);
+    color: var(--color-text-medium);
+}
+
+body.theme-dark .theme-switcher {
+    border-left-color: var(--color-border);
+}
+
+body.theme-dark .theme-btn:hover {
+    color: var(--color-icons-themes);
+}
+
+body.theme-high-contrast .theme-btn {
+    border-color: var(--color-border);
+    color: var(--color-text-medium);
+}
+
+body.theme-high-contrast .theme-btn:hover {
+    color: var(--color-icons-themes);
+}
+
+body.theme-high-contrast .theme-switcher {
+    border-left-color: var(--color-border);
+}
+
+body.theme-high-contrast .theme-btn.active {
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+    border-color: var(--color-primary);
+}
+
+body.theme-high-contrast .fa-star {
+    color: var(--color-primary);
+}
+
+/* --- AUMENTA FONTES (APENAS ALTO CONTRASTE) --- */
+
+body.theme-high-contrast p {
+    font-size: 20px;
+}
+
+body.theme-high-contrast li {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .hero-content .tag {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .hero-content h1 span.text-secondary {
+    font-size: 52px;
+}
+
+body.hero-content h1 span.text-primary {
+    font-size: 52px;
+}
+
+body.theme-high-contrast .hero-stats {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .impact>.container>p:first-of-type {
+    font-size: 20px;
+}
+
+body.theme-high-contrast .impact-card span {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .nav-links a {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .project-card p,
+body.theme-high-contrast .testimonial-card p {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .project-meta-compact span {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .project-meta-icons span {
+    font-size: 16px;
+}
+
+body.theme-high-contrast .projects>.projects_subtitle {
+    font-size: 20px;
+}
+
+body.theme-high-contrast .container p {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .footer p {
+    font-size: 16px;
+}
+
+body.theme-high-contrast .footer-col ul a {
+    font-size: 16px;
+}
+
+body.theme-high-contrast .team-role {
+    font-size: 18px;
+}
+
+body.theme-high-constrast .info-card {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .faq-item strong {
+    font-size: 22px;
+}
+
+body.theme-high-contrast .form-group label {
+    font-size: 18px;
+}
+
+body.theme-high-contrast .value-card h3 {
+    font-size: 22px;
 }
