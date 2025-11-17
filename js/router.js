@@ -67,8 +67,9 @@ const routes = {
 const loadPage = async (path) => {
     let cleanPath = path.split('?')[0] || '/';
 
-    if (cleanPath === '/index.min.html') cleanPath = '/'; 
-
+if (cleanPath === '/index.html' || cleanPath === '/index.min.html' || cleanPath === '/index-versao-nao-minificada.html') {
+    cleanPath = '/';
+}
     const route = routes[cleanPath] || routes['/404'];
 
     const response = await fetch(route.path);
