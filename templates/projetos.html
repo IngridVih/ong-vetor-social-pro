@@ -1,0 +1,30 @@
+<section class="page-header">
+    <div class="container">
+        <h1>Nossos Projetos</h1>
+        <p>Descubra iniciativas que estão transformando comunidades e faça parte da mudança</p>
+    </div>
+</section>
+<section class="projects-page container">
+    <div class="filter-bar">
+        <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Buscar projetos por título ou descrição...">
+        </div>
+        <div class="view-options">
+            <span id="projectCount"></span>
+            <button class="view-btn active"><i class="fa-solid fa-grip"></i></button>
+        </div>
+    </div>
+
+    <div id="activeFilterMessage" class="active-filter" style="display:none;">
+    <span id="filterText"></span>
+    <button id="clearFilterBtn" class="btn btn-secondary-outline">Remover filtro</button>
+</div>
+    
+    <div class="projects-grid-page" id="projects-grid-container"></div>
+    
+    <div id="noResultsMessage" style="display: none; text-align: center; padding: 3rem 0;">
+        <h3>Nenhum projeto encontrado</h3>
+        <p>Tente ajustar sua busca ou filtros.</p>
+    </div>
+</section>

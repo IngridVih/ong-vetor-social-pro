@@ -10,15 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/style.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
-
     <header class="header">
         <nav class="container">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo nav-link">
                 <picture>
                     <source srcset="img/logo.webp" type="image/webp">
                     <img src="img/logo.jpg" alt="Logo Vetor Social" class="logo">
@@ -34,310 +34,51 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="/" class="nav-link active">Início</a></li>
                 <li class="dropdown">
-                    <a href="projetos.html">
+                    <a href="/projetos" class="nav-link" id="projetos-menu-button" role="button" aria-haspopup="menu"
+                        aria-controls="projetos-menu" aria-expanded="false">
                         Projetos <i class="fa-solid fa-chevron-down"></i>
                     </a>
-                    <ul class="dropdown-menu">
+
+                    <ul class="dropdown-menu" id="projetos-menu" role="menu" aria-labelledby="projetos-menu-button">
                         <li>
-                            <a href="projetos.html?categoria=Educação">
+                            <a href="/projetos?categoria=Educação" class="nav-link">
                                 <i class="fa-solid fa-graduation-cap"></i> Educação
                             </a>
                         </li>
                         <li>
-                            <a href="projetos.html?categoria=Saúde">
+                            <a href="/projetos?categoria=Saúde" class="nav-link">
                                 <i class="fa-solid fa-heart-pulse"></i> Saúde
                             </a>
                         </li>
                         <li>
-                            <a href="projetos.html?categoria=Meio%20Ambiente">
+                            <a href="/projetos?categoria=Meio%20Ambiente" class="nav-link">
                                 <i class="fa-solid fa-seedling"></i> Meio Ambiente
                             </a>
                         </li>
                         <li>
-                            <a href="projetos.html?categoria=Assistência%20Social">
+                            <a href="/projetos?categoria=Assistência%20Social" class="nav-link">
                                 <i class="fa-solid fa-hands-helping"></i> Assistência Social
                             </a>
                         </li>
+
                     </ul>
                 </li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="cadastro.html">Seja Voluntário</a></li>
-                <li><a href="doar.html">Doação</a></li>
+                <li><a href="/sobre" class="nav-link">Sobre</a></li>
+                <li><a href="/contato" class="nav-link">Contato</a></li>
+                <li><a href="/cadastro" class="nav-link">Seja Voluntário</a></li>
+                <li><a href="/doar" class="nav-link">Doação</a></li>
+
             </ul>
         </nav>
     </header>
 
-    <main>
-        <!-- HERO -->
-        <section class="hero container">
-            <div class="hero-content">
-                <span class="tag">
-                    <i class="fa-solid fa-heart"></i>
-                    Transformando Vidas desde 2017
-                </span>
-                <h1>Conectamos <span class="text-primary">Pessoas</span> para Transformar <span
-                        class="text-secondary">Comunidades</span></h1>
-                <p>Somos uma plataforma que une voluntários, doadores e organizações para criar impacto social real
-                    através de projetos educacionais, ambientais e assistenciais.</p>
-                <div class="hero-buttons">
-                    <a href="cadastro.html" class="btn btn-primary"><i class="fa-solid fa-hand-holding-heart"></i> Seja
-                        Voluntário</a>
-                    <a href="projetos.html" class="btn btn-secondary-outline"><i class="fa-solid fa-play-circle"></i>
-                        Ver Projetos</a>
-                </div>
-                <div class="hero-stats">
-                    <div>
-                        <strong>500+</strong>
-                        <span>Voluntários</span>
-                    </div>
-                    <div>
-                        <strong>50+</strong>
-                        <span>Projetos</span>
-                    </div>
-                    <div>
-                        <strong>10k+</strong>
-                        <span>Impactados</span>
-                    </div>
-                    <div>
-                        <strong><i class="fa-solid fa-star"></i> 4.9/5</strong>
-                        <span>Avaliação</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="carousel">
-                    <div class="carousel-track">
-                        <img src="img/projeto1.jpg" alt="Voluntários e Alunos na oficina de hardware">
-                        <img src="img/projeto2.jpg" alt="Voluntários da Saúde">
-                        <img src="img/projeto3.jpg" alt="Voluntários entregando comida">
-                    </div>
-                    <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
-
-                <div class="hero-image-tag">
-                    <i class="fa-solid fa-circle-check"></i> 50+ Projetos Realizados
-                </div>
-            </div>
-        </section>
-
-        <!-- IMPACTO -->
-        <section class="impact">
-            <div class="container">
-                <h2>Nosso Impacto em Números</h2>
-                <p>Cada número representa vidas transformadas e comunidades fortalecidas</p>
-                <div class="impact-grid">
-                    <div class="impact-card">
-                        <i class="fa-solid fa-users icon-green"></i>
-                        <strong>500+</strong>
-                        <span>Voluntários Ativos</span>
-                    </div>
-                    <div class="impact-card">
-                        <i class="fa-solid fa-bullseye icon-blue"></i>
-                        <strong>50+</strong>
-                        <span>Projetos Realizados</span>
-                    </div>
-                    <div class="impact-card">
-                        <i class="fa-solid fa-heart icon-orange"></i>
-                        <strong>10K +</strong>
-                        <span>Pessoas Impactadas</span>
-                    </div>
-                    <div class="impact-card">
-                        <i class="fa-solid fa-chart-line icon-purple"></i>
-                        <strong>95%</strong>
-                        <span>Taxa de Sucesso</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJETOS EM DESTAQUE -->
-        <section class="projects container">
-            <h2>Projetos em Destaque</h2>
-            <p class="projects_subtitle">Conheça alguns dos projetos que estão transformando comunidades</p>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <picture>
-                            <source srcset="img/alimentacao.webp" type="image/webp">
-                            <img src="img/alimentacao.jpg" alt="Alimentação Solidária">
-                        </picture>
-                        <span class="project-tag">Assistência Social</span>
-                    </div>
-
-                    <div class="project-content">
-                        <h3>Alimentação Solidária</h3>
-                        <p>O programa Alimentação Solidária oferece refeições nutritivas todos os dias para pessoas em
-                            situação de rua, acompanhadas de escuta e orientação social. Além de garantir acesso à
-                            alimentação de qualidade, o projeto promove saúde, dignidade e novas possibilidades de
-                            reintegração social.</p>
-                        <div class="project-meta">
-                            <span><strong>Arrecadado:</strong> R$ 89.750</span>
-                            <span><strong>Meta:</strong> R$ 120.000</span>
-                        </div>
-
-                        <span class="progress-label">75%</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%;"></div>
-                        </div>
-
-                        <div class="project-footer">
-                            <span>Por: <strong>Carlos Mendes</strong></span>
-                            <a href="projetos.html">Ver Projetos <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <picture>
-                            <source srcset="img/saude_mental.webp" type="image/webp">
-                            <img src="img/saude_mental.jpg" alt="Saúde Mental">
-                        </picture>
-                        <span class="project-tag">Saúde</span>
-                    </div>
-
-                    <div class="project-content">
-                        <h3>Saúde Mental na Comunidade</h3>
-                        <p>O projeto Saúde Mental na Comunidade oferece apoio psicológico gratuito para famílias em
-                            situação de vulnerabilidade. Por meio de atendimentos individuais, rodas de conversa e
-                            oficinas de bem-estar, busca fortalecer vínculos, promover o autocuidado e combater o
-                            estigma em torno da saúde emocional.</p>
-
-                        <div class="project-meta">
-                            <span><strong>Arrecadado:</strong> R$ 45.300</span>
-                            <span><strong>Meta:</strong> R$ 75.000</span>
-                        </div>
-                        <span class="progress-label">60%</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 60%;"></div>
-                        </div>
-
-                        <div class="project-footer">
-                            <span>Por: <strong>Dr. Roberto Santos</strong></span>
-                            <a href="projetos.html">Ver Projetos <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <picture>
-                            <source srcset="img/educacao_digital.webp" type="image/webp">
-                            <img src="img/educacao_digital.jpg" alt="Educação Digital">
-                        </picture>
-                        <span class="project-tag">Educação</span>
-                    </div>
-
-                    <div class="project-content">
-                        <h3>Educação Digital para Todos</h3>
-                        <p>O programa Educação Digital para Todos leva conhecimento em tecnologia a comunidades com
-                            pouco acesso à informação. Oferece cursos gratuitos de informática básica e cidadania
-                            digital, preparando jovens e adultos para o mercado de trabalho e fortalecendo a inclusão
-                            social através da educação.</p>
-                        <div class="project-meta">
-                            <span><strong>Arrecadado:</strong> R$ 32.500</span>
-                            <span><strong>Meta:</strong> R$ 50.000</span>
-                        </div>
-                        <span class="progress-label">65%</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 65%;"></div>
-                        </div>
-                        <div class="project-footer">
-                            <span>Por: <strong>Dr. Roberto Santos</strong></span>
-                            <a href="projetos.html">Ver Projetos <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TESTEMUNHOS -->
-        <section class="testimonials">
-            <div class="container">
-                <h2>O Que Dizem Nossos Voluntários</h2>
-                <p>Histórias reais de pessoas que fazem a diferença</p>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <i class="fa-solid fa-quote-left"></i>
-                        <p>"Fazer parte da Vetor Social transformou minha vida. Ver o impacto direto do meu
-                            trabalho na
-                            comunidade é indescritível."</p>
-                        <div class="author">
-                            <picture>
-                                <source srcset="img/maria_silva.webp" type="image/webp">
-                                <img src="img/maria_silva.jpg" alt="Maria Silva">
-                            </picture>
-                            <div>
-                                <strong>Maria Silva</strong>
-                                <span>Voluntária há 3 anos</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <i class="fa-solid fa-quote-left"></i>
-                        <p>"A organização e o profissionalismo da equipe fazem toda a diferença. Juntos,
-                            conseguimos
-                            muito mais, é incrível fazer parte disso."</p>
-                        <div class="author">
-                            <picture>
-                                <source srcset="img/ana_costa.webp" type="image/webp">
-                                <img src="ana_costa.jpg" alt="Ana Costa">
-                            </picture>
-                            <div>
-                                <strong>Ana Costa</strong>
-                                <span>Voluntária de Meio Ambiente</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <i class="fa-solid fa-quote-left"></i>
-                        <p>"Ensinar crianças e ver seus olhos brilhando com o aprendizado é a maior recompensa
-                            que posso
-                            ter. Amo fazer parte disso."</p>
-                        <div class="author">
-                            <picture>
-                                <source srcset="img/joana_santos.webp" type="image/webp">
-                                <img src="img/joana_santos.jpg" alt="Joana Santos">
-                            </picture>
-                            <div>
-                                <strong>Joana Santos</strong>
-                                <span>Voluntária da Educação</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta">
-            <div class="container">
-                <h2>Pronto para Fazer a Diferença?</h2>
-                <p>Junte-se a centenas de voluntários que estão transformando vidas. Sua contribuição pode ser o
-                    início
-                    de uma grande mudança.</p>
-                <div class="cta-buttons">
-                    <a href="cadastro.html" class="btn btn-light"><i class="fa-solid fa-pen-to-square"></i>
-                        Cadastre-se
-                        Agora</a>
-                    <a href="doar.html" class="btn btn-light-outline">Faça uma Doação <i
-                            class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-    </main>
-
+    <main id="app-root" aria-live="polite"></main>
     <footer class="footer">
         <div class="container footer-main">
             <div class="footer-col">
-                <a href="index.html" class="logo">
+                <a href="/" class="logo nav-link">
                     <img src="img/logo.png" alt="Logo Vetor Social">
                     <div>
                         <strong>Vetor Social</strong>
@@ -356,21 +97,21 @@
             <div class="footer-col">
                 <h4>Links Rápidos</h4>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="projetos.html">Projetos</a></li>
-                    <li><a href="sobre.html">Sobre Nós</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                    <li><a href="cadastro.html">Seja Voluntário</a></li>
-                    <li><a href="doar.html">Faça uma Doação</a></li>
+                    <li><a href="/" class="nav-link">Início</a></li>
+                    <li><a href="/projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="/sobre" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="/contato" class="nav-link">Contato</a></li>
+                    <li><a href="/cadastro" class="nav-link">Seja Voluntário</a></li>
+                    <li><a href="/doar" class="nav-link">Faça uma Doação</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Nossos Projetos</h4>
                 <ul>
-                    <li><a href="#">Educação</a></li>
-                    <li><a href="#">Saúde</a></li>
-                    <li><a href="#">Meio Ambiente</a></li>
-                    <li><a href="#">Assistência Social</a></li>
+                    <li><a href="/projetos?categoria=Educação" class="nav-link">Educação</a></li>
+                    <li><a href="/projetos?categoria=Saúde" class="nav-link">Saúde</a></li>
+                    <li><a href="/projetos?categoria=Meio%20Ambiente" class="nav-link">Meio Ambiente</a></li>
+                    <li><a href="/projetos?categoria=Assistência%20Social" class="nav-link">Assistência Social</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -410,9 +151,8 @@
             </div>
         </div>
     </footer>
-    <script src="js/menu.js"></script>
-    <script src="js/filter.js"></script>
-    <script src="js/carousel.js"></script>
+
+    <script src="js/router.js" type="module"></script>
 </body>
 
 </html>
