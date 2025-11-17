@@ -1,77 +1,101 @@
 <main class="container">
     <div class="cadastro-container">
-
         <div class="cadastro-header">
             <h2>Cadastro de Voluntário</h2>
             <p>Faça parte da nossa comunidade e ajude a transformar vidas através do voluntariado</p>
         </div>
 
-        <div class="stepper">
-            <div class="step active" data-step="1">
-                <span>1</span>
-                <div class="step-line"></div>
-            </div>
-            <div class="step" data-step="2">
-                <span>2</span>
-                <div class="step-line"></div>
-            </div>
-            <div class="step" data-step="3">
-                <span>3</span>
-                <div class="step-line"></div>
-            </div>
-            <div class="step" data-step="4">
-                <span>4</span>
-            </div>
-        </div>
+        <h2 id="stepper-label" class="sr-only">Progresso do Cadastro</h2>
+
+        <nav class="stepper" aria-labelledby="stepper-label">
+            <ol>
+                <li class="step active" data-step="1" aria-current="step">
+                    <span>1</span>
+                    <div class="step-line"></div>
+                </li>
+                <li class="step" data-step="2">
+                    <span>2</span>
+                    <div class="step-line"></div>
+                </li>
+                <li class="step" data-step="3">
+                    <span>3</span>
+                    <div class="step-line"></div>
+                </li>
+                <li class="step" data-step="4">
+                    <span>4</span>
+                </li>
+            </ol>
+        </nav>
 
         <form id="volunteerForm" class="form-container" action="cadastro-sucesso.html" method="GET">
-            
+
             <div class="form-step active" id="step-1">
-                <h3 class="form-step-title"><i class="fa-solid fa-user"></i> Dados Pessoais</h3>
+                <h3 class="form-step-title"><i class="fa-solid fa-user" aria-hidden="true"></i> Dados Pessoais</h3>
                 <p class="form-step-subtitle">Etapa 1 de 4</p>
                 <div class="form-grid-2col">
                     <div class="form-group">
                         <label for="nome">Nome Completo *</label>
                         <input type="text" id="nome" placeholder="Seu nome completo" required maxlength="200"
                             pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="Use apenas letras e espaços." autocomplete="name">
+                        <span class="validation-message error" id="nomeError" role="alert" style="display: none;">
+                            Por favor, preencha seu nome.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="email">Email *</label>
-                        <input type="email" id="email" placeholder="seu@email.com" required maxlength="200" autocomplete="email">
+                        <input type="email" id="email" placeholder="seu@email.com" required maxlength="200"
+                            autocomplete="email">
+                        <span class="validation-message error" id="emailError" role="alert" style="display: none;">
+                            Por favor, insira um e-mail válido.
+                        </span>
                     </div>
                 </div>
                 <div class="form-grid-2col">
                     <div class="form-group">
                         <label for="cpf">CPF *</label>
                         <input type="text" id="cpf" placeholder="000.000.000-00" required maxlength="14"
-                            pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
-                            title="Digite um CPF válido (ex: 123.456.789-00)" autocomplete="off">
+                            pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" title="Digite um CPF válido (ex: 123.456.789-00)"
+                            autocomplete="off">
+                        <span class="validation-message error" id="cpfError" role="alert" style="display: none;">
+                            Por favor, digite um CPF válido.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="telefone">Telefone *</label>
                         <input type="tel" id="telefone" placeholder="(11) 99999-9999" required maxlength="15"
                             pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
                             title="Digite um telefone válido (ex: (11) 99999-9999)" autocomplete="tel">
+                        <span class="validation-message error" id="telefoneError" role="alert" style="display: none;">
+                            Por favor, digite um telefone válido.
+                        </span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nascimento">Data de Nascimento *</label>
                     <input type="date" id="nascimento" required>
+                    <span class="validation-message error" id="nascimentoError" role="alert" style="display: none;">
+                        Por favor, informe sua data de nascimento.
+                    </span>
                 </div>
                 <div class="form-buttons">
-                    <button type="button" class="btn btn-primary btn-next">Próximo <i
-                            class="fa-solid fa-arrow-right"></i></button>
+                    <button type="button" class="btn btn-primary btn-next">Próximo <i class="fa-solid fa-arrow-right"
+                            aria-hidden="true"></i></button>
                 </div>
             </div>
 
             <div class="form-step" id="step-2">
-                <h3 class="form-step-title"><i class="fa-solid fa-map-location-dot"></i> Endereço</h3>
+                <h3 class="form-step-title"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Endereço
+                </h3>
                 <p class="form-step-subtitle">Etapa 2 de 4</p>
                 <div class="form-grid-2col">
                     <div class="form-group">
                         <label for="cep">CEP *</label>
                         <input type="text" id="cep" placeholder="00000-000" required maxlength="9"
-                            pattern="\d{5}-?\d{3}" title="Digite um CEP válido (ex: 12345-678)" autocomplete="postal-code">
+                            pattern="\d{5}-?\d{3}" title="Digite um CEP válido (ex: 12345-678)"
+                            autocomplete="postal-code">
+                        <span class="validation-message error" id="cepError" role="alert" style="display: none;">
+                            Por favor, digite um CEP válido.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="estado">Estado *</label>
@@ -105,74 +129,121 @@
                             <option value="SE">Sergipe</option>
                             <option value="TO">Tocantins</option>
                         </select>
+                        <span class="validation-message error" id="estadoError" role="alert" style="display: none;">
+                            Por favor, selecione um estado.
+                        </span>
                     </div>
                 </div>
                 <div class="form-grid-2col">
                     <div class="form-group">
                         <label for="cidade">Cidade *</label>
                         <input type="text" id="cidade" placeholder="Nome da cidade" required maxlength="100"
-                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="Use apenas letras e espaços." autocomplete="address-level2">
+                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="Use apenas letras e espaços."
+                            autocomplete="address-level2">
+                        <span class="validation-message error" id="cidadeError" role="alert" style="display: none;">
+                            Por favor, preencha sua cidade.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="rua">Rua *</label>
                         <input type="text" id="rua" placeholder="Nome da rua" required maxlength="100"
-                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" title="Use apenas letras, números e espaços." autocomplete="address-line1">
+                            pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" title="Use apenas letras, números e espaços."
+                            autocomplete="address-line1">
+                        <span class="validation-message error" id="ruaError" role="alert" style="display: none;">
+                            Por favor, preencha sua rua.
+                        </span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="numero">Número</label>
                     <input type="text" id="numero" placeholder="Número da residência" maxlength="20"
-                        pattern="[0-9A-Za-z\s\/\-]*" title="Pode conter números e letras (ex: 123 ou 45A)." required autocomplete="address-line2">
+                        pattern="[0-9A-Za-z\s\/\-]*" title="Pode conter números e letras (ex: 123 ou 45A)." required
+                        autocomplete="address-line2">
+                    <span class="validation-message error" id="numeroError" role="alert" style="display: none;">
+                        Por favor, preencha o número.
+                    </span>
                 </div>
                 <div class="form-buttons">
-                    <button type="button" class="btn btn-secondary-outline btn-prev"><i
-                            class="fa-solid fa-arrow-left"></i> Anterior</button>
-                    <button type="button" class="btn btn-primary btn-next">Próximo <i
-                            class="fa-solid fa-arrow-right"></i></button>
+                    <button type="button" class="btn btn-secondary-outline btn-prev"><i class="fa-solid fa-arrow-left"
+                            aria-hidden="true"></i> Anterior</button>
+                    <button type="button" class="btn btn-primary btn-next">Próximo <i class="fa-solid fa-arrow-right"
+                            aria-hidden="true"></i></button>
                 </div>
             </div>
 
             <div class="form-step" id="step-3">
-                <h3 class="form-step-title"><i class="fa-solid fa-heart"></i> Habilidades e Disponibilidade</h3>
+                <h3 class="form-step-title"><i class="fa-solid fa-heart" aria-hidden="true"></i> Habilidades e
+                    Disponibilidade</h3>
                 <p class="form-step-subtitle">Etapa 3 de 4</p>
 
                 <fieldset class="form-group">
-                    <legend class="form-label-group">Suas Habilidades * <small>(selecione pelo menos uma)</small></legend>
+                    <legend class="form-label-group">Suas Habilidades * <small>(selecione pelo menos uma)</small>
+                    </legend>
                     <div class="checkbox-grid" id="habilidades-grid">
-                        <div class="checkbox-group"><input type="checkbox" id="cb-edu" name="habilidade"> <label for="cb-edu">Educação</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-saude" name="habilidade"> <label for="cb-saude">Saúde</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-tec" name="habilidade"> <label for="cb-tec">Tecnologia</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-com" name="habilidade"> <label for="cb-com">Comunicação</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-org" name="habilidade"> <label for="cb-org">Organização</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-lid" name="habilidade"> <label for="cb-lid">Liderança</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-arte" name="habilidade"> <label for="cb-arte">Arte</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-mus" name="habilidade"> <label for="cb-mus">Música</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-esp" name="habilidade"> <label for="cb-esp">Esporte</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-cul" name="habilidade"> <label for="cb-cul">Culinária</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-jar" name="habilidade"> <label for="cb-jar">Jardinagem</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-const" name="habilidade"> <label for="cb-const">Construção</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-adm" name="habilidade"> <label for="cb-adm">Administração</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-cont" name="habilidade"> <label for="cb-cont">Contabilidade</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-mkt" name="habilidade"> <label for="cb-mkt">Marketing</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-design" name="habilidade"> <label for="cb-design">Design</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-foto" name="habilidade"> <label for="cb-foto">Fotografia</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-trad" name="habilidade"> <label for="cb-trad">Tradução</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-edu" name="habilidade"> <label
+                                for="cb-edu">Educação</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-saude" name="habilidade"> <label
+                                for="cb-saude">Saúde</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-tec" name="habilidade"> <label
+                                for="cb-tec">Tecnologia</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-com" name="habilidade"> <label
+                                for="cb-com">Comunicação</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-org" name="habilidade"> <label
+                                for="cb-org">Organização</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-lid" name="habilidade"> <label
+                                for="cb-lid">Liderança</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-arte" name="habilidade"> <label
+                                for="cb-arte">Arte</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-mus" name="habilidade"> <label
+                                for="cb-mus">Música</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-esp" name="habilidade"> <label
+                                for="cb-esp">Esporte</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-cul" name="habilidade"> <label
+                                for="cb-cul">Culinária</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-jar" name="habilidade"> <label
+                                for="cb-jar">Jardinagem</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-const" name="habilidade"> <label
+                                for="cb-const">Construção</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-adm" name="habilidade"> <label
+                                for="cb-adm">Administração</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-cont" name="habilidade"> <label
+                                for="cb-cont">Contabilidade</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-mkt" name="habilidade"> <label
+                                for="cb-mkt">Marketing</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-design" name="habilidade"> <label
+                                for="cb-design">Design</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-foto" name="habilidade"> <label
+                                for="cb-foto">Fotografia</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-trad" name="habilidade"> <label
+                                for="cb-trad">Tradução</label></div>
                     </div>
-                    <span class="validation-message error" id="habilidadeError" style="display: none;">Selecione pelo menos uma habilidade</span>
+                    <span class="validation-message error" id="habilidadeError" role="alert"
+                        style="display: none;">Selecione pelo
+                        menos uma habilidade</span>
                 </fieldset>
 
                 <fieldset class="form-group">
-                    <legend class="form-label-group">Dias Disponíveis * <small>(selecione pelo menos um)</small></legend>
+                    <legend class="form-label-group">Dias Disponíveis * <small>(selecione pelo menos um)</small>
+                    </legend>
                     <div class="checkbox-grid" id="dias-grid">
-                        <div class="checkbox-group"><input type="checkbox" id="cb-seg" name="dias"> <label for="cb-seg">Segunda-feira</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-ter" name="dias"> <label for="cb-ter">Terça-feira</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-qua" name="dias"> <label for="cb-qua">Quarta-feira</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-qui" name="dias"> <label for="cb-qui">Quinta-feira</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-sex" name="dias"> <label for="cb-sex">Sexta-feira</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-sab" name="dias"> <label for="cb-sab">Sábado</label></div>
-                        <div class="checkbox-group"><input type="checkbox" id="cb-dom" name="dias"> <label for="cb-dom">Domingo</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-seg" name="dias"> <label
+                                for="cb-seg">Segunda-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-ter" name="dias"> <label
+                                for="cb-ter">Terça-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-qua" name="dias"> <label
+                                for="cb-qua">Quarta-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-qui" name="dias"> <label
+                                for="cb-qui">Quinta-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-sex" name="dias"> <label
+                                for="cb-sex">Sexta-feira</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-sab" name="dias"> <label
+                                for="cb-sab">Sábado</label></div>
+                        <div class="checkbox-group"><input type="checkbox" id="cb-dom" name="dias"> <label
+                                for="cb-dom">Domingo</label></div>
                     </div>
-                    <span class="validation-message error" id="diasError" style="display: none;">Selecione pelo menos um dia</span>
+                    <span class="validation-message error" id="diasError" role="alert" style="display: none;">Selecione
+                        pelo menos um
+                        dia</span>
                 </fieldset>
 
                 <div class="form-grid-2col">
@@ -190,6 +261,9 @@
                         <label for="horas">Horas Semanais Disponíveis *</label>
                         <input type="number" id="horas" placeholder="Ex: 8" required min="1" max="168"
                             title="Informe o número de horas semanais disponíveis." autocomplete="off">
+                        <span class="validation-message error" id="horasError" role="alert" style="display: none;">
+                            Informe um número de horas (mín. 1).
+                        </span>
                     </div>
                 </div>
 
@@ -201,15 +275,16 @@
                 </div>
 
                 <div class="form-buttons">
-                    <button type="button" class="btn btn-secondary-outline btn-prev"><i
-                            class="fa-solid fa-arrow-left"></i> Anterior</button>
-                    <button type="button" class="btn btn-primary btn-next">Próximo <i
-                            class="fa-solid fa-arrow-right"></i></button>
+                    <button type="button" class="btn btn-secondary-outline btn-prev"><i class="fa-solid fa-arrow-left"
+                            aria-hidden="true"></i> Anterior</button>
+                    <button type="button" class="btn btn-primary btn-next">Próximo <i class="fa-solid fa-arrow-right"
+                            aria-hidden="true"></i></button>
                 </div>
             </div>
 
             <div class="form-step" id="step-4">
-                <h3 class="form-step-title"><i class="fa-solid fa-seedling"></i> Motivação e Áreas de Interesse</h3>
+                <h3 class="form-step-title"><i class="fa-solid fa-seedling" aria-hidden="true"></i> Motivação e Áreas de
+                    Interesse</h3>
                 <p class="form-step-subtitle">Etapa 4 de 4</p>
 
                 <div class="form-group">
@@ -217,7 +292,8 @@
                     <textarea id="motivacao" rows="5" placeholder="Compartilhe sua motivação para ser voluntário..."
                         required maxlength="300"></textarea>
                     <div class="validation-message-container">
-                        <span class="validation-message error" id="motivacaoError" style="display: none;">Motivação
+                        <span class="validation-message error" id="motivacaoError" style="display: none;"
+                            role="alert">Motivação
                             é obrigatória</span>
                         <span class="char-counter" id="motivacaoCounter">0/300 caracteres</span>
                     </div>
@@ -229,39 +305,46 @@
                     <div class="card-checkbox-grid">
                         <div class="card-checkbox-group">
                             <input type="checkbox" id="area-edu" name="areaInteresse">
-                            <label for="area-edu"><i class="fa-solid fa-book"></i> Educação</label>
+                            <label for="area-edu"><i class="fa-solid fa-book" aria-hidden="true"></i> Educação</label>
                         </div>
                         <div class="card-checkbox-group">
                             <input type="checkbox" id="area-saude" name="areaInteresse">
-                            <label for="area-saude"><i class="fa-solid fa-briefcase-medical"></i> Saúde</label>
+                            <label for="area-saude"><i class="fa-solid fa-briefcase-medical" aria-hidden="true"></i>
+                                Saúde</label>
                         </div>
                         <div class="card-checkbox-group">
                             <input type="checkbox" id="area-amb" name="areaInteresse">
-                            <label for="area-amb"><i class="fa-solid fa-tree"></i> Meio Ambiente</label>
+                            <label for="area-amb"><i class="fa-solid fa-tree" aria-hidden="true"></i> Meio
+                                Ambiente</label>
                         </div>
                         <div class="card-checkbox-group">
                             <input type="checkbox" id="area-ass" name="areaInteresse">
-                            <label for="area-ass"><i class="fa-solid fa-hand-holding-heart"></i> Assistência
+                            <label for="area-ass"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+                                Assistência
                                 Social</label>
                         </div>
                         <div class="card-checkbox-group">
                             <input type="checkbox" id="area-cult" name="areaInteresse">
-                            <label for="area-cult"><i class="fa-solid fa-palette"></i> Cultura</label>
+                            <label for="area-cult"><i class="fa-solid fa-palette" aria-hidden="true"></i>
+                                Cultura</label>
                         </div>
                         <div class="card-checkbox-group">
                             <input type="checkbox" id="area-esp" name="areaInteresse">
-                            <label for="area-esp"><i class="fa-solid fa-person-running"></i> Esporte</label>
+                            <label for="area-esp"><i class="fa-solid fa-person-running" aria-hidden="true"></i>
+                                Esporte</label>
                         </div>
                     </div>
-                    <span class="validation-message error" id="areaError" style="display: none;">Selecione pelo menos
+                    <span class="validation-message error" id="areaError" style="display: none;" role="alert">Selecione
+                        pelo menos
                         uma área de interesse</span>
                 </fieldset>
 
 
                 <div class="form-buttons">
-                    <button type="button" class="btn btn-secondary-outline btn-prev"><i
-                            class="fa-solid fa-arrow-left"></i> Anterior</button>
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Finalizar
+                    <button type="button" class="btn btn-secondary-outline btn-prev"><i class="fa-solid fa-arrow-left"
+                            aria-hidden="true"></i> Anterior</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check" aria-hidden="true"></i>
+                        Finalizar
                         Cadastro</button>
                 </div>
             </div>
