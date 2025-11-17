@@ -6,8 +6,8 @@ import { db } from './database.js'; // Importa banco de dados
 function createProjectCard(project, isPageAllProjects = false) {
     let statusClass = project.status === 'ativo' ? 'ativo' : 'planejamento';
     let iconClass = project.icon || 'fa-palette';
-    
-    const buttonHtml = isPageAllProjects 
+
+    const buttonHtml = isPageAllProjects
         ? `<a href="/cadastro" class="btn btn-primary btn-small nav-link">Ser Voluntário</a>`
         : `<a href="/projetos" class="btn btn-primary btn-small nav-link">Ver Projetos <i class="fa-solid fa-arrow-right"></i></a>`;
 
@@ -115,12 +115,107 @@ export function initMenu() {
             navLinks.classList.remove('show');
         }
     });
+
+    // =================================================================
+    // ### NOVA LÓGICA DE ACESSIBILIDADE PARA DROPDOWN DESKTOP ###
+    // =================================================================
+
+    // Seletores específicos para o dropdown de desktop
+    const desktopDropdownButton = document.getElementById('projetos-menu-button');
+    const desktopDropdownMenu = document.getElementById('projetos-menu');
+
+    if (desktopDropdownButton && desktopDropdownMenu) {
+        const desktopDropdownItems = desktopDropdownMenu.querySelectorAll('a.nav-link');
+
+        // Função para abrir/fechar o menu
+        const toggleMenu = (shouldOpen) => {
+            const isExpanded = shouldOpen;
+            desktopDropdownButton.setAttribute('aria-expanded', isExpanded);
+            // Adiciona/remove a classe .show do elemento <li> pai
+            desktopDropdownButton.parentElement.classList.toggle('show', isExpanded);
+        };
+
+        // 1. Abrir/Fechar com Clique
+        desktopDropdownButton.addEventListener('click', (e) => {
+            // Previne que o router.js navegue para a página /projetos
+            e.preventDefault();
+            // Previne que o listener de "clique fora" feche o menu imediatamente
+            e.stopPropagation();
+
+            const isExpanded = desktopDropdownButton.getAttribute('aria-expanded') === 'true';
+            toggleMenu(!isExpanded);
+        });
+
+        // 2. Abrir/Fechar com Teclado (no botão principal)
+        desktopDropdownButton.addEventListener('keydown', (e) => {
+            // Abre com Enter, Espaço ou Seta para Baixo
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu(true);
+                // Move o foco para o primeiro item do menu
+                if (desktopDropdownItems.length > 0) desktopDropdownItems[0].focus();
+            }
+            // Fecha com Seta para Cima
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                toggleMenu(false);
+            }
+            // Fecha com Escape
+            if (e.key === 'Escape') {
+                toggleMenu(false);
+                desktopDropdownButton.focus(); // Devolve o foco ao botão
+            }
+        });
+
+        // 3. Navegação com Teclado (dentro do menu)
+        desktopDropdownItems.forEach((item, index) => {
+            item.addEventListener('keydown', (e) => {
+                // Move para baixo
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (index < desktopDropdownItems.length - 1) {
+                        desktopDropdownItems[index + 1].focus();
+                    }
+                }
+                // Move para cima
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (index > 0) {
+                        desktopDropdownItems[index - 1].focus();
+                    } else {
+                        // Se estiver no primeiro, volta para o botão principal
+                        desktopDropdownButton.focus();
+                        toggleMenu(false);
+                    }
+                }
+                // Fecha com Escape
+                if (e.key === 'Escape') {
+                    toggleMenu(false);
+                    desktopDropdownButton.focus(); // Devolve o foco ao botão
+                }
+                // Fecha ao dar Tab no último item
+                if (e.key === 'Tab' && !e.shiftKey && index === desktopDropdownItems.length - 1) {
+                    toggleMenu(false);
+                    // O comportamento padrão do Tab moverá para "Sobre"
+                }
+            });
+        });
+
+        // 4. Fechar ao clicar fora
+        document.addEventListener('click', (e) => {
+            // Se o clique foi fora do <li>.dropdown
+            if (!dropdown.contains(e.target)) {
+                toggleMenu(false);
+            }
+        });
+    }
 }
 
 // Lógica de js/carousel.js
 export function initCarousel() {
     const track = document.querySelector('.carousel-track');
-    if (!track) return; 
+    if (!track) return;
 
     const slides = Array.from(track.children);
     if (slides.length === 0) return;
@@ -146,7 +241,7 @@ export function initCarousel() {
     });
 
     window.addEventListener('resize', updateCarousel);
-    
+
     setInterval(() => {
         currentIndex = (currentIndex + 1) % slides.length;
         updateCarousel();
@@ -175,12 +270,12 @@ export function initFilter() {
     // Função de filtro principal
     function filterProjects() {
         const searchTerm = (searchInput?.value || '').toLowerCase().trim();
-        
+
         // Pega a categoria da URL ATUALMENTE
         const urlParams = new URLSearchParams(window.location.search);
         const categoriaParam = urlParams.get('categoria');
         const categoriaFiltro = categoriaParam ? categoriaParam.toLowerCase().replace('%20', ' ') : null;
-        
+
         let count = 0;
 
         projectCards.forEach(card => {
@@ -203,7 +298,7 @@ export function initFilter() {
         noResultsMessage.style.display = count === 0 ? 'block' : 'none';
 
         // --- LÓGICA DO BOTÃO "REMOVER FILTRO" ADICIONADA ---
-        
+
         // Se veio com uma categoria na URL, exibe a mensagem
         if (categoriaParam && filterMessage && filterText) {
             filterMessage.style.display = 'flex';
@@ -227,8 +322,8 @@ export function initFilter() {
             window.history.pushState({}, '', url);
 
             // Oculta a mensagem
-            if(filterMessage) filterMessage.style.display = 'none';
-            
+            if (filterMessage) filterMessage.style.display = 'none';
+
             // Re-executa o filtro (que agora não achará categoria)
             filterProjects();
         });
@@ -240,14 +335,10 @@ export function initFilter() {
     }
 }
 
-// js/app.js
-
-// ... (o resto do seu app.js, initMenu, etc. fica igual) ...
-
-// Lógica de js/cadastro.js (AGORA COM VALIDAÇÃO DA ETAPA 3)
+// Lógica de js/cadastro.js
 export function initCadastroForm(navigate) { // <-- A função 'navigate' do router
     const form = document.getElementById("volunteerForm");
-    if (!form) return; 
+    if (!form) return;
 
     // (Código de máscaras original - está correto)
     const nomeInput = document.getElementById("nome");
@@ -276,7 +367,7 @@ export function initCadastroForm(navigate) { // <-- A função 'navigate' do rou
     const habilidadeError = document.getElementById("habilidadeError");
     const diasCheckboxes = document.querySelectorAll('input[name="dias"]');
     const diasError = document.getElementById("diasError");
-    
+
     // Listeners para limpar os erros da Etapa 3
     habilidadeCheckboxes.forEach(cb => cb.addEventListener('change', () => {
         habilidadeError.style.display = 'none';
@@ -284,8 +375,6 @@ export function initCadastroForm(navigate) { // <-- A função 'navigate' do rou
     diasCheckboxes.forEach(cb => cb.addEventListener('change', () => {
         diasError.style.display = 'none';
     }));
-    // --- FIM DA NOVA VALIDAÇÃO ---
-
 
     motivacaoInput.addEventListener("input", () => {
         motivacaoCounter.textContent = `${motivacaoInput.value.length}/300 caracteres`;
@@ -293,42 +382,88 @@ export function initCadastroForm(navigate) { // <-- A função 'navigate' do rou
         motivacaoError.style.display = "none";
     });
     form.querySelectorAll("input, select, textarea").forEach((input) => {
-        input.addEventListener("input", () => input.classList.remove("error"));
+        input.addEventListener("input", () => {
+            input.classList.remove("error");
+
+            // Adiciona estas 3 linhas
+            const errorSpan = document.getElementById(input.id + 'Error');
+            if (errorSpan) {
+                errorSpan.style.display = "none";
+            }
+        });
     });
     areaCheckboxes.forEach(cb => cb.addEventListener('change', () => {
         areaError.style.display = 'none';
         document.querySelectorAll('.card-checkbox-group.error').forEach(c => c.classList.remove('error'));
     }));
 
-    // (Seu código de stepper original - está correto)
     const nextButtons = document.querySelectorAll(".btn-next");
     const prevButtons = document.querySelectorAll(".btn-prev");
     const steps = document.querySelectorAll(".form-step");
-    const stepIndicators = document.querySelectorAll(".step");
+    const stepIndicators = document.querySelectorAll(".stepper li");
     let currentStep = 0;
 
+    // =================================================================
+    // FUNÇÃO 'showStep' (COM AS CORREÇÕES DE ACESSIBILIDADE)
+    // =================================================================
     const showStep = (index) => {
+        // Mostra o painel do formulário correto
         steps.forEach((s, i) => s.classList.toggle("active", i === index));
-        stepIndicators.forEach((si, i) => si.classList.toggle("active", i <= index));
+
+        // Atualiza os indicadores do stepper
+        stepIndicators.forEach((li, i) => {
+            // 1. Atualiza o visual (classe .active)
+            li.classList.toggle("active", i <= index);
+
+            // 2. CORREÇÃO DE ACESSIBILIDADE (aria-current)
+            li.removeAttribute('aria-current');
+            if (i === index) {
+                li.setAttribute('aria-current', 'step');
+            }
+        });
+
         currentStep = index;
+
+        // 3. CORREÇÃO DE ACESSIBILIDADE (Mover Foco)
+        const novaEtapa = steps[index];
+        const novoTitulo = novaEtapa.querySelector('h3');
+
+        if (novoTitulo) {
+            // Torna o título focável
+            novoTitulo.setAttribute('tabindex', '-1');
+            // Move o foco do leitor de tela para ele
+            novoTitulo.focus();
+        }
     };
-    
-    // (Função validateStep ATUALIZADA)
+
+    // =================================================================
+    // FUNÇÃO 'validateStep'
+    // =================================================================
     const validateStep = (stepIndex) => {
         let valid = true;
         const stepInputs = steps[stepIndex].querySelectorAll("input[required], select[required], textarea[required]");
-        
+
         stepInputs.forEach((input) => {
+            // Encontra o <span> de erro correspondente (ex: "nomeError")
+            const errorSpan = document.getElementById(input.id + 'Error');
+
             if (!input.checkValidity()) {
                 input.classList.add("error");
+                // MOSTRA o erro
+                if (errorSpan) {
+                    errorSpan.style.display = "block";
+                }
                 valid = false;
             } else {
                 input.classList.remove("error");
+                // ESCONDE o erro
+                if (errorSpan) {
+                    errorSpan.style.display = "none";
+                }
             }
         });
-        
-        // --- NOVA VALIDAÇÃO PARA ETAPA 3 (stepIndex == 2) ---
-        if (stepIndex === 2) { 
+
+        if (stepIndex === 2) {
             let habilidadeChecked = false;
             habilidadeCheckboxes.forEach((cb) => { if (cb.checked) habilidadeChecked = true; });
             if (!habilidadeChecked) {
@@ -347,15 +482,16 @@ export function initCadastroForm(navigate) { // <-- A função 'navigate' do rou
                 diasError.style.display = "none";
             }
         }
-        // --- FIM DA NOVA VALIDAÇÃO ---
 
-        // Validação da Etapa 4 (stepIndex == 3)
         if (stepIndex === 3) {
             let anyChecked = false;
             areaCheckboxes.forEach((cb) => { if (cb.checked) anyChecked = true; });
             if (!anyChecked) {
                 areaError.style.display = "block";
-                document.querySelectorAll('.card-checkbox-group').forEach(c => c.classList.add('error'));
+                // Adiciona classe de erro ao wrapper do label para feedback visual
+                document.querySelectorAll('label[for^="area-"]').forEach(label => {
+                    label.closest('.card-checkbox-group').classList.add('error');
+                });
                 valid = false;
             } else {
                 areaError.style.display = "none";
@@ -366,13 +502,31 @@ export function initCadastroForm(navigate) { // <-- A função 'navigate' do rou
                 document.getElementById("motivacaoError").style.display = "block";
                 valid = false;
             } else {
-                 document.getElementById("motivacaoError").style.display = "none";
+                document.getElementById("motivacaoError").style.display = "none";
+            }
+        }
+
+        // 4. CORREÇÃO DE ACESSIBILIDADE (Foco no Erro, sem alert)
+        if (!valid) {
+            // Encontra o primeiro input ou fieldset com erro e foca nele
+            const firstError = form.querySelector('.error');
+            if (firstError) {
+                // Se for um input, foca nele
+                if (firstError.tagName === 'INPUT' || firstError.tagName === 'SELECT' || firstError.tagName === 'TEXTAREA') {
+                    firstError.focus();
+                } else {
+                    // Se for um 'span' (erro de checkbox), foca no primeiro checkbox do grupo
+                    const fieldset = firstError.closest('fieldset');
+                    if (fieldset) {
+                        fieldset.querySelector('input[type="checkbox"]').focus();
+                    }
+                }
             }
         }
         return valid;
     };
 
-    // BOTÕES "PRÓXIMO" (com novo alert)
+    // BOTÕES "PRÓXIMO" (Sem alert)
     nextButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
             if (validateStep(currentStep)) {
@@ -380,13 +534,12 @@ export function initCadastroForm(navigate) { // <-- A função 'navigate' do rou
                 if (currentStep < steps.length) {
                     showStep(currentStep);
                 }
-            } else {
-                alert("Por favor, corrija os campos obrigatórios para avançar.");
-                window.scrollTo({ top: 0, behavior: "smooth" });
             }
+            // A função validateStep() agora cuida do foco.
         });
     });
 
+    // BOTÕES "ANTERIOR"
     prevButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
             currentStep--;
@@ -395,16 +548,12 @@ export function initCadastroForm(navigate) { // <-- A função 'navigate' do rou
             }
         });
     });
-    
-    // BOTÃO "FINALIZAR CADASTRO" (com novo alert)
+
+    // BOTÃO "FINALIZAR CADASTRO"
     form.addEventListener("submit", function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
         if (validateStep(currentStep)) {
-            // Se for válido, navega para a página de sucesso
             navigate('/cadastro-sucesso');
-        } else {
-            alert("Por favor, corrija os campos obrigatórios para finalizar.");
-            window.scrollTo({ top: 0, behavior: "smooth" });
         }
     });
 
@@ -432,13 +581,13 @@ export function initDoacaoForm() {
         const valor = document.getElementById("valor").value;
         const projetoSelect = document.getElementById("projeto");
         const projeto = projetoSelect.options[projetoSelect.selectedIndex].text;
-        
+
         // Verifica se um pagamento foi selecionado
         const pagamentoInput = form.querySelector('input[name="pagamento"]:checked');
         if (!pagamentoInput) {
-             msg.innerHTML = `Por favor, selecione um método de pagamento.`;
-             msg.style.color = "var(--color-secondary)";
-             return;
+            msg.innerHTML = `Por favor, selecione um método de pagamento.`;
+            msg.style.color = "var(--color-secondary)";
+            return;
         }
         const pagamento = pagamentoInput.value;
 
@@ -449,22 +598,22 @@ export function initDoacaoForm() {
     });
 }
 
-// Lógica do formulário de contato (REVERTIDO PARA ALERT)
-export function initContatoForm() { // <-- Não precisa mais do 'navigate'
+// Lógica do formulário de contato
+export function initContatoForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
-    
-    // --- LÓGICA DO LOCALSTORAGE (Sua lógica existente) ---
+
+    // --- LÓGICA DO LOCALSTORAGE  ---
     const nomeInput = document.getElementById('nome');
     const emailInput = document.getElementById('email');
 
-    if(nomeInput) {
+    if (nomeInput) {
         nomeInput.value = localStorage.getItem('contactName') || '';
         nomeInput.addEventListener('input', (e) => {
             localStorage.setItem('contactName', e.target.value);
         });
     }
-    if(emailInput) {
+    if (emailInput) {
         emailInput.value = localStorage.getItem('contactEmail') || '';
         emailInput.addEventListener('input', (e) => {
             localStorage.setItem('contactEmail', e.target.value);
@@ -472,10 +621,10 @@ export function initContatoForm() { // <-- Não precisa mais do 'navigate'
     }
     // --- FIM DO LOCALSTORAGE ---
 
-    // --- LÓGICA DE SUBMIT (Agora usa 'alert') ---
+    // --- LÓGICA DE SUBMIT ---
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         // Validação
         const nome = nomeInput.value;
         const email = emailInput.value;
@@ -501,11 +650,11 @@ export function initContatoForm() { // <-- Não precisa mais do 'navigate'
 export function renderHomeProjects() {
     const container = document.getElementById('projects-grid-container');
     if (!container) return;
-    
-    const featuredProjects = db.projects.slice(0, 3); 
+
+    const featuredProjects = db.projects.slice(0, 3);
     let html = '';
     featuredProjects.forEach(project => {
-        html += createProjectCard(project, false); 
+        html += createProjectCard(project, false);
     });
     container.innerHTML = html;
 }
@@ -529,33 +678,90 @@ export function updateActiveNavLink() {
         if (linkPath === currentPath) {
             link.classList.add('active');
         }
-
-        // Caso especial para "Projetos":
-        // Se o link é "/projetos" e o caminho atual é "/projetos", já funciona.
-        // Se o caminho for "/" (Início), apenas o link "/" será ativado.
     });
 }
 
 export function renderAllProjects() {
     const container = document.getElementById('projects-grid-container');
     if (!container) return;
-    
+
     let html = '';
     db.projects.forEach(project => {
-        html += createProjectCard(project, true); 
+        html += createProjectCard(project, true);
     });
     container.innerHTML = html;
-    
+
     initFilter(); // Inicia o filtro DEPOIS de renderizar os cards
 }
 
 export function renderTestimonials() {
     const container = document.getElementById('testimonials-grid-container');
     if (!container) return;
-    
+
     let html = '';
     db.testimonials.forEach(testimonial => {
         html += createTestimonialCard(testimonial);
     });
     container.innerHTML = html;
+}
+
+// =======================
+// LÓGICA DE TEMA (LocalStorage)
+// =======================
+
+/**
+ * Aplica o tema (classe) no <body> e salva no localStorage.
+ * Também atualiza qual botão aparece como "ativo".
+ */
+function applyTheme(theme) {
+    const body = document.body;
+
+    // Seleciona os botões
+    const lightBtn = document.getElementById('theme-light');
+    const darkBtn = document.getElementById('theme-dark');
+    const contrastBtn = document.getElementById('theme-contrast');
+
+    // Reseta tudo
+    body.classList.remove('theme-dark', 'theme-high-contrast');
+    if (lightBtn) lightBtn.classList.remove('active');
+    if (darkBtn) darkBtn.classList.remove('active');
+    if (contrastBtn) contrastBtn.classList.remove('active');
+
+    // Aplica o tema novo
+    if (theme === 'dark') {
+        body.classList.add('theme-dark');
+        if (darkBtn) darkBtn.classList.add('active');
+        localStorage.setItem('theme', 'dark'); // Salva
+    } else if (theme === 'high-contrast') {
+        body.classList.add('theme-high-contrast');
+        if (contrastBtn) contrastBtn.classList.add('active');
+        localStorage.setItem('theme', 'high-contrast'); // Salva
+    } else {
+        // 'light' é o padrão
+        if (lightBtn) lightBtn.classList.add('active');
+        localStorage.setItem('theme', 'light'); // Salva
+    }
+}
+
+/**
+ * Inicializa os event listeners dos botões de tema.
+ */
+export function initThemeSwitcher() {
+    const lightBtn = document.getElementById('theme-light');
+    const darkBtn = document.getElementById('theme-dark');
+    const contrastBtn = document.getElementById('theme-contrast');
+
+    if (lightBtn && darkBtn && contrastBtn) {
+        lightBtn.addEventListener('click', () => applyTheme('light'));
+        darkBtn.addEventListener('click', () => applyTheme('dark'));
+        contrastBtn.addEventListener('click', () => applyTheme('high-contrast'));
+    }
+}
+
+/**
+ * Verifica o localStorage e aplica o tema salvo ao carregar o site.
+ */
+export function applySavedTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light'; // Pega o tema salvo ou usa 'light'
+    applyTheme(savedTheme);
 }

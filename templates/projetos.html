@@ -7,12 +7,13 @@
 <section class="projects-page container">
     <div class="filter-bar">
         <div class="search-box">
-            <i class="fa-solid fa-search"></i>
+            <label for="searchInput" class="sr-only">Buscar projetos</label>
+            <i class="fa-solid fa-search" aria-hidden="true"></i>
             <input type="text" id="searchInput" placeholder="Buscar projetos por título ou descrição...">
         </div>
         <div class="view-options">
-            <span id="projectCount"></span>
-            <button class="view-btn active"><i class="fa-solid fa-grip"></i></button>
+            <span id="projectCount" aria-live="polite"></span>
+            <button class="view-btn active" aria-label="Visualização para grade"><i class="fa-solid fa-grip" aria-hidden="true"></i></button>
         </div>
     </div>
 
@@ -23,7 +24,7 @@
     
     <div class="projects-grid-page" id="projects-grid-container"></div>
     
-    <div id="noResultsMessage" style="display: none; text-align: center; padding: 3rem 0;">
+    <div id="noResultsMessage" aria-live="polite" style="display: none; text-align: center; padding: 3rem 0;">
         <h3>Nenhum projeto encontrado</h3>
         <p>Tente ajustar sua busca ou filtros.</p>
     </div>
