@@ -11,25 +11,25 @@
     <section class="contact-info-cards container">
         <div class="info-card-grid">
             <div class="info-card">
-                <i class="fa-solid fa-phone-volume"></i>
+                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
                 <h3>Telefone</h3>
                 <p>(11) 99999-9999</p>
                 <span class="info-card-span">Segunda a Sexta, 8h às 18h</span>
             </div>
             <div class="info-card">
-                <i class="fa-solid fa-envelope"></i>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                 <h3>Email</h3>
                 <p>contato@vetorsocial.org</p>
                 <span class="info-card-span">Respondemos em até 24h</span>
             </div>
             <div class="info-card">
-                <i class="fa-brands fa-whatsapp"></i>
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                 <h3>WhatsApp</h3>
                 <p>(11) 99999-9999</p>
                 <span class="info-card-span">Atendimento rápido</span>
             </div>
             <div class="info-card">
-                <i class="fa-solid fa-location-dot"></i>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                 <h3>Endereço</h3>
                 <p>Rua da Solidariedade, 123</p>
                 <span class="info-card-span">Centro, São Paulo - SP</span>
@@ -44,7 +44,7 @@
                 <h2>Envie sua Mensagem</h2>
                 <form id="contactForm">
                     <div class="form-group">
-                        <label for="tipoContato">Tipo de Contato</label>
+                        <label for="tipoContato">Tipo de Contato *</label>
                         <select id="tipoContato">
                             <option>Informações Gerais</option>
                             <option>Quero ser Voluntário</option>
@@ -58,23 +58,26 @@
                             <label for="nome">Nome Completo *</label>
                             <input type="text" id="nome" placeholder="Seu nome completo" required maxlength="200"
                                 pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="Use apenas letras e espaços." autocomplete="name">
+                            <span class="validation-message error" id="nomeError" role="alert" style="display: none;">Por favor, preencha seu nome.</span>
                         </div>
                         <div class="form-group">
                             <label for="email">Email *</label>
                             <input type="email" id="email" placeholder="seu@email.com" required maxlength="200" autocomplete="email">
+                            <span class="validation-message error" id="emailError" role="alert" style="display: none;">Por favor, insira um e-mail válido.</span>
                         </div>
                     </div>
 
                     <div class="form-grid-2col">
                         <div class="form-group">
-                            <label for="telefone">Telefone</label>
-                            <input type="tel" id="telefone" placeholder="(11) 99999-9999" required maxlength="15"
+                            <label for="telefone">Telefone *</label>
+                            <input type="tel" id="telefone" placeholder="(11) 99999-9999" maxlength="15"
                                 pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
                                 title="Digite um telefone válido (ex: (11) 99999-9999)" autocomplete="tel">
                         </div>
                         <div class="form-group">
                             <label for="assunto">Assunto *</label>
                             <input type="text" id="assunto" placeholder="Assunto da mensagem" required autocomplete="off">
+                            <span class="validation-message error" id="assuntoError" role="alert" style="display: none;">Por favor, preencha o assunto.</span>
                         </div>
                     </div>
 
@@ -82,11 +85,14 @@
                         <label for="mensagem">Mensagem *</label>
                         <textarea id="mensagem" rows="7" placeholder="Conte-nos como podemos ajudar você..."
                             required></textarea>
+                        <span class="validation-message error" id="mensagemError" role="alert" style="display: none;">Por favor, escreva sua mensagem.</span>
                     </div>
 
-                    <button type="submit" class="btn btn-submit"><i class="fa-solid fa-paper-plane"></i> Enviar
+                    <!-- Mensagem de sucesso/erro geral -->
+                    <p id="contact-form-message" class="form-message" aria-live="polite"></p>
+
+                    <button type="submit" class="btn btn-submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar
                         Mensagem</button>
-                    <p id="mensagem-doacao" class="mensagem-doacao"></p>
 
                 </form>
             </div>
@@ -94,7 +100,7 @@
             <aside class="contact-sidebar">
 
                 <div class="sidebar-card">
-                    <h3><i class="fa-solid fa-clock"></i> Horário de Funcionamento</h3>
+                    <h3><i class="fa-solid fa-clock" aria-hidden="true"></i> Horário de Funcionamento</h3>
                     <ul class="schedule-list">
                         <li><span>Segunda a Sexta:</span> <strong>8h às 18h</strong></li>
                         <li><span>Sábados:</span> <strong>9h às 14h</strong></li>
@@ -103,28 +109,36 @@
                 </div>
 
                 <div class="sidebar-card location-card">
-                    <h3><i class="fa-solid fa-map-location-dot"></i> Nossa Localização</h3>
+                    <h3><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Nossa Localização</h3>
                     <p>
                         Rua da Solidariedade, 123<br>
                         Centro, São Paulo - SP<br>
                         CEP: 01234-567
                     </p>
-                    <a href="#">Ver no Google Maps <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" class="nav-link">Ver no Google Maps <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
 
                 <div class="sidebar-card">
-                    <h3><i class="fa-solid fa-share-nodes"></i> Siga-nos</h3>
+                    <h3><i class="fa-solid fa-share-nodes" aria-hidden="true"></i> Siga-nos</h3>
                     <p>Acompanhe nosso trabalho e novidades nas redes sociais:</p>
                     <div class="sidebar-social-links">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Siga-nos no Facebook" class="nav-link">
+                            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" aria-label="Siga-nos no Twitter" class="nav-link">
+                            <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" aria-label="Siga-nos no Instagram" class="nav-link">
+                            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" aria-label="Siga-nos no Linkedin" class="nav-link">
+                            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div class="sidebar-card faq-card">
-                    <h3><i class="fa-solid fa-circle-question"></i> Perguntas Frequentes</h3>
+                    <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Perguntas Frequentes</h3>
                     <div class="faq-item">
                         <strong>Como posso me tornar voluntário?</strong>
                         <p>Faça seu cadastro em nossa página de voluntários e aguarde nosso contato.</p>
